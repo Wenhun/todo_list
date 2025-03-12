@@ -60,10 +60,7 @@ class ToggleTaskCompletedView(View):
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         task = get_object_or_404(Task, pk=kwargs["pk"])
 
-        if task.is_completed:
-            task.is_completed = False
-        else:
-            task.is_completed = True
+        task.is_completed = not task.is_completed
 
         task.save()
         return HttpResponseRedirect(
