@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from todo_list_app.forms import TaskForm
-from todo_list_app.models import Task
+from todo_list_app.forms import TaskForm, TagForm
+from todo_list_app.models import Task, Tag
 
 
 class TaskListView(ListView):
@@ -26,3 +26,24 @@ class TaskUpdateView(UpdateView):
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("index")
+
+
+class TagListView(ListView):
+    model = Tag
+    template_name = "todo_list_app/tag_list.html"
+
+class TagCreateView(CreateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("tag-list")
+
+
+class TagUpdateView(UpdateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("tag-list")
+
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    success_url = reverse_lazy("tag-list")

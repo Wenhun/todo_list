@@ -16,3 +16,9 @@ class TaskForm(forms.ModelForm):
             "deadline",
             "tag"
         ]
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = "__all__"
