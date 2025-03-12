@@ -1,5 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content%}
-  CONTENT
+  <header>
+    <h1 class="container p-3 my-3 border d-flex justify-content-between align-items-center">
+      TODO list
+      <a class="btn btn-primary" href="#">Add Task</a>
+    </h1>
+  </header>
+
+  {% for task in task_list %}
+    <div class="container p-3">
+      <p class="font-weight-bold">
+        {{ task.content }}
+        {% if task.is_completed %}
+          <span style="color: green;">Completed</span>
+        {% else %}
+          <span style="color: red;">Not Completed</span>
+        {% endif %}
+      </p>
+      <p>
+        Created: {{ task.date_created }}
+      </p>
+      <p>
+        Deadline: {{ task.deadline }}
+      </p>
+      <h5 style="color: gray">
+        Tags:
+        {% for tag in task.tag.all %}
+          {{ tag.name }}
+        {% endfor %}
+      </h5>
+    </div>
+  {% endfor %}
 {% endblock %}
