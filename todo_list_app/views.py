@@ -1,7 +1,11 @@
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
+from django.views.generic import (ListView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView,
+                                  View)
 
 from todo_list_app.forms import TaskForm, TagForm
 from todo_list_app.models import Task, Tag
@@ -33,6 +37,7 @@ class TaskDeleteView(DeleteView):
 class TagListView(ListView):
     model = Tag
     template_name = "todo_list_app/tag_list.html"
+
 
 class TagCreateView(CreateView):
     model = Tag
