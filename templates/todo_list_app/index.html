@@ -9,21 +9,31 @@
   </header>
 
   {% for task in task_list %}
-    <div class="container p-3">
-      <p class="font-weight-bold">
-        {{ task.content }}
+    <div class="container p-3 border">
+      <div class="my-3 d-flex justify-content-between align-items-center">
+        <p class="font-weight-bold">
+          {{ task.content }}
+          {% if task.is_completed %}
+            <span style="color: green;">Completed</span>
+          {% else %}
+            <span style="color: red;">Not Completed</span>
+          {% endif %}
+        </p>
         {% if task.is_completed %}
-          <span style="color: green;">Completed</span>
+          <a class="btn btn-secondary" href="{% url 'task-toggle-complete' pk=task.pk %}">Undo</a>
         {% else %}
-          <span style="color: red;">Not Completed</span>
+        	<a class="btn btn-success" href="{% url 'task-toggle-complete' pk=task.pk %}">Complete</a>
         {% endif %}
-      </p>
+      </div>
+
       <p>
         Created: {{ task.date_created }}
       </p>
+
       <p>
         Deadline: {{ task.deadline }}
       </p>
+
       <div class="d-flex align-items-center">
         <h5 style="color: gray; margin-right: 10px;">
           Tags:

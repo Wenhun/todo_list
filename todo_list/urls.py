@@ -25,7 +25,8 @@ from todo_list_app.views import (TaskListView,
                                  TagListView,
                                  TagCreateView,
                                  TagUpdateView,
-                                 TagDeleteView)
+                                 TagDeleteView,
+                                 ToggleTaskCompletedView)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -37,4 +38,5 @@ urlpatterns = [
     path("tags/create", TagCreateView.as_view(), name="tag-create"),
     path("tags/<int:pk>/update", TagUpdateView.as_view(), name="tag-update"),
     path("tags/<int:pk>/delete", TagDeleteView.as_view(), name="tag-delete"),
+    path("tasks/<int:pk>/toggle_complete", ToggleTaskCompletedView.as_view(), name="task-toggle-complete"),
 ]
