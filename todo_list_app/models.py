@@ -16,7 +16,7 @@ class Task(models.Model):
         ordering = ["is_completed", "deadline"]
 
     content = models.TextField()
-    date_created = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
     tag = models.ManyToManyField(
